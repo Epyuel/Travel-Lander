@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="5package.css" rel="stylesheet">
+    <title>Tour Lander|Pakages</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <div class="menu-container">
+                <div class="menu" id="menu">
+                    <div class="menu-line"></div>
+                    <div class="menu-line"></div>
+                    <div class="menu-line"></div>
+                </div>
+            </div>
+            <div class="logo-division">
+                <img class="logo__image" src="src_pictures/logo.png" alt="company logo" width="70px" height="70px">
+                <span class="logo__company-name">Travel Lander</span>
+            </div>
+            <section class="user-logo-container">
+                <div class="user-logo"><a title="My Account" href="7My_Account.html"><img class="user-logo__img" src="src_pictures/user-solid.svg" alt="user logo" height="30px" width="30px"></a></div>
+            </section>
+        </div>
+        <div class="links-container" id="links-container">
+            <div class="links">
+                <a class="links__a" href="index.html">Home</a>
+                <a class="links__a" href="4About_us.html">About us</a>
+                <a class="links__a" href="2Destinations.html">Destinations</a>
+                <a class="links__a" href="3Contact_us.html">Contact us</a>
+            </div>
+            <section class="user-logo-container-disp">
+                <div class="user-logo"><a title="My Account" href="7My_Account.html"><img class="user-logo__img" src="src_pictures/user-solid.svg" alt="user logo" height="30px" width="30px"></a></div>
+            </section>
+        </div>
+    </header>
+    <div class="place-name-container">
+        <h1 class="place-name-container__h1">Egypt</h1>
+        <span class="place-name-container__rating">
+            <img class="place-name-conatiner__star" src="src_pictures/star-solid.svg" alt="Rating icon" width="20px" height="20px">
+            <img class="place-name-conatiner__star" src="src_pictures/star-solid.svg" alt="Rating icon" width="20px" height="20px">
+            <img class="place-name-conatiner__star" src="src_pictures/star-solid.svg" alt="Rating icon" width="20px" height="20px">
+            <img class="place-name-conatiner__star" src="src_pictures/star-solid.svg" alt="Rating icon" width="20px" height="20px">
+            <img class="place-name-conatiner__star" src="src_pictures/star-half.svg" alt="Rating icon" width="20px" height="20px">
+        </span>
+        <span class="place-name-conatiner__number">
+            4.5
+        </span> 
+    </div>
+    <div class="palce-discription-container">
+        <section class="image-section">
+        <img class="image-section__image" id="country" src="src_pictures/egypt.jpg" width="200px" height="200px" alt="egyptian-template">
+        </section>
+        <section class="discription-container">
+            <h2 class="discription-container-date" title="mm/dd/yy">Departure date:01/20/23</h2>
+            <p class="discription-container__date-p" >
+                5 Day Egypt Tour with Nile Cruise. Awaken your inner explorer on this expedition through the lush river valleys and golden desert landscapes of Egypt. 
+                Cruise the Nile past the pharaonic temples of Luxor to the Nubian treasures of Aswan. 
+                Your voyage will also take you to the mystical Pyramids of Giza, Tomb of the Nobles and the Sphinx.    
+            </p>
+            <div class="travel packs">
+                <span class="packs__container"><image class="packs__image" src="src_pictures/calendar-days.svg" alt="Calander icon" width="20px" height="20px"> Travel</span>
+                <br>
+                <span class="packs__discription">5 days, 1 country and 2 cities</span>
+            </div>
+            <div class="accomodation packs">
+                <span class="packs__container"><image class="packs__image" src="src_pictures/bed.svg" alt="Calander icon" width="20px" height="20px"> Travel</span>
+                <br>
+                <span class="packs__discription">4 Nights</span>
+            </div>
+            <div class="meal packs">
+                <span class="packs__container"><image class="packs__image" src="src_pictures/utensils.svg" alt="Calander icon" width="20px" height="20px"> Travel</span>
+                <br>
+                <span class="packs__discription">4 Breakfasts, 1 Be My Guest, 4 Lunches, 4 Dinners</span>
+            </div>
+            <div class="path packs">
+                <span class="packs__container"><image class="packs__image" src="src_pictures/location.svg" alt="Calander icon" width="20px" height="20px"> Travel</span>
+                <br>
+                <span class="packs__discription">5 days, 1 country and 2 cities</span>
+            </div>
+        </section>
+    </div>
+        <div class="map-container">
+            <div class="zoom">
+                <button class="zoom__zoom" id="zoom__in" onclick="zoomIn()" title="Zoom IN"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button>
+                <section class="blanck-space"></section>
+                <button class="zoom__zoom" id="zoom__out" onclick="zoomOut()" title="Zoom Out" type="submit"><img src="src_pictures/minus-solid.svg" alt="Minus icon" width="20px" height="20px"></button>
+            </div>
+            <div class="map">
+                <img class="map__image" id="map__image" src="src_pictures/egypt_map.png" alt="map" width="80%" height="600px">
+            </div>
+            <div class="legend">
+                <h3 class="legend__h3">Legend</h3>
+                <table class="table">
+                    <tr>
+                        <th>Symbole</th>
+                        <th>Description</th>
+                    </tr>                    
+                    <tr>
+                        <td>1</td>
+                        <td>Start location</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>End location</td>
+                    </tr>
+                    <tr>
+                        <td><img class="table__icon" src="src_pictures/plane-solid.svg" alt="plane icon" height="20px" width="20px"></td>
+                        <td>Plane</td>
+                    </tr>
+                    <tr>
+                        <td><img class="table__icon" src="src_pictures/ship-solid.svg" alt="ship icon" height="20px" width="20px"></td>
+                        <td>Ship</td>
+                    </tr>                
+                </table>
+            </div>
+        </div>
+        <footer>
+            <div class="footer">
+                <table class="footer__table">
+                    <tr class=>
+                    <th class="table__header">Tour Lander</th>
+                    <th class="table__header">Social Media</th>
+                    </tr>
+                    <tr>
+                        <td><a class="footer__table__links" href="4About_us.html">About us</a></td>
+                        <td><a href="http://www.facebook.com/"><img title="FaceBook" id="facebook_icon" src="src_pictures/facebook.svg" alt="Facebook icon" width="30px" height="30px"></a>
+                            <a href="http://www.instagram.com/"><img title="Instagram" id="instgram_icon" src="src_pictures/instagram.svg" alt="Instagram icon" width="30px" height="30px"></a>
+                            <a href="http://www.twitter.com"><img title="Twitter" id="twitter_icon" src="src_pictures/twitter.svg" alt="Twitter icon" width="30px" height="30px"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a class="footer__table__links" href="3Contact_us.html">Contact us</a></td>
+                    </tr>
+                    <tr>
+                        <td><a class="footer__table__links" href="6FAQ.html">FAQ</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="footer__bed"><em>@ All rights are reserved 2022</em></div>
+        </footer>
+
+<!--menu-->
+    <script>
+        const toggleButton= document.getElementById("menu");
+        const linksContainer= document.getElementById("links-container");
+        toggleButton.addEventListener('click', ()=>{
+            linksContainer.classList.toggle('active')
+        });
+    </script>
+
+<!--Zoom button-->
+    <script>
+        function zoomIn(){
+            document.getElementById('map__image').style.width="165%";
+        } 
+        function zoomOut(){
+            document.getElementById('map__image').style.width="75%";
+        } 
+    </script>
+</body>
+</html>
