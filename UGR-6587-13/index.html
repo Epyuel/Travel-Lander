@@ -271,9 +271,9 @@
             // }
             // signup()
             
-
-
+            let token;
             async function signin() {
+                
                 const response = await fetch(
                     'http://localhost:3333/auth/signin',
                     {
@@ -287,41 +287,36 @@
                             password:'secure'
                         })
                     }
-                ).then(response => response.json())
-                 .then(data => {
-                                console.log(json)
-                                localStorage.setItem('access_token', data.token);
-                                console.log('all done');
-                                })
+                ).then(res => res.json())
+                 .then(data => token= data.access_token)
+                 .catch(error => console.log('error'))
+                //  return token
             }
-            signin();
-            const token = localStorage.getItem('access_token')
-            console.log(token);
-
-            // async function out(button) {
-            //     const image = button.firstElementChild;
-            //     image.src = "src_pictures/check.svg";
-            //     const packageTitle = button.closest('.card-block').querySelector('.title').textContent;
-            //     const desc = button.closest('.card-block').querySelector('.card-text').textContent;
-            //     const redirect = button.closest('.card-block').querySelector('.btn').getAttribute('href');
+            token = signin();
+            async function out(button) {
+                const image = button.firstElementChild;
+                image.src = "src_pictures/check.svg";
+                const packageTitle = button.closest('.card-block').querySelector('.title').textContent;
+                const desc = button.closest('.card-block').querySelector('.card-text').textContent;
+                const redirect = button.closest('.card-block').querySelector('.btn').getAttribute('href');
 
 
-            //     const response = await fetch(
-            //         'http://localhost:3333/bookmarks',
-            //         {
-            //             method: 'POST',
-            //             headers: {
-            //                 'Content-Type': 'application/json',
-            //                 'Authorization': `Bearer ${token}`
-            //             },
-            //             body: JSON.stringify ({
-            //                 title:packageTitle,
-            //                 description:desc,
-            //                 link:redirect
-            //             })
-            //         }
-            //     )
-            // }
+                const response = await fetch(
+                    'http://localhost:3333/bookmarks',
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify ({
+                            title:packageTitle,
+                            description:desc,
+                            link:redirect
+                        })
+                    }
+                )
+            }
 
             
             

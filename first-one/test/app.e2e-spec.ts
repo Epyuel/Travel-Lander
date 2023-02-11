@@ -68,7 +68,7 @@ describe('App e2e', () =>{
       })
 
       it('should signin', () => {
-        return pactum.spec().post('/auth/signin').withBody(dto).expectStatus(200).stores('userAt', 'access_token');
+        return pactum.spec().post('/auth/signin').withBody(dto).expectStatus(200).stores('userAt', 'access_token').inspect();
       });
     })
   })
@@ -93,7 +93,7 @@ describe('App e2e', () =>{
   describe('bookmark', () =>{
     describe('get empty bookmarks', () => {
       it("should get bookmarks", () =>{
-        return pactum.spec().get('/bookmarks').withHeaders({Authorization: 'Bearer $S{userAt}'}).expectStatus(200).expectBody([]).inspect()
+        return pactum.spec().get('/bookmarks').withHeaders({Authorization: 'Bearer $S{userAt}'}).expectStatus(200).expectBody([])
       })
     })
 
@@ -117,7 +117,7 @@ describe('App e2e', () =>{
     
     describe('get bookmark by id', () => {
       it("should get bookmarks id", () =>{
-        return pactum.spec().get('/bookmarks/{id}').withPathParams('id', '$S{bookmarkId}').withHeaders({Authorization: 'Bearer $S{userAt}'}).expectStatus(200).expectBodyContains('$S{bookmarkId}').inspect();
+        return pactum.spec().get('/bookmarks/{id}').withPathParams('id', '$S{bookmarkId}').withHeaders({Authorization: 'Bearer $S{userAt}'}).expectStatus(200).expectBodyContains('$S{bookmarkId}');
       })
     })
 
