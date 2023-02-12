@@ -250,27 +250,27 @@
             });
 
 
-            // async function signup() {
-            //     const response = await fetch(
-            //         'http://localhost:3333/auth/signup',
-            //         {
-            //             method:'POST',
-            //             headers: {
-            //                 'content-Type': 'application/json',
-            //                 'Accept': 'application/json'
-            //             },
-            //             body: JSON.stringify({
-            //                 email:'vladmir@gmail.com',
-            //                 password:'secure'
-            //             })
-            //         }
-            //     ).then(response => response.json())
-            //      .then(data => {
-            //                     localStorage.setItem('access_token', data.token);
-            //                     console.log(data.token);
-            //                     })
-            // }
-            // signup()
+            async function signup() {
+                const response = await fetch(
+                    'http://localhost:3333/auth/signup',
+                    {
+                        method:'POST',
+                        headers: {
+                            'content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            email:'vladmir@gmail.com',
+                            password:'secure'
+                        })
+                    }
+                ).then(response => response.json())
+                 .then(data => {
+                                localStorage.setItem('access_token', data.token);
+                                console.log(data.token);
+                                })
+            }
+            signup()
             
 
 
