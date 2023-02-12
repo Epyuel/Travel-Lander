@@ -8,6 +8,121 @@
     <link href="index.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script> 
     <title>Travel Lander| My Account</title>
+    <script>
+        let token;
+        async function signin() {
+            const response = await fetch(
+                'http://localhost:3333/auth/signin',
+                {
+                    method:'POST',
+                    headers: {
+                        'content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email:'vladmir@gmail.com',
+                        password:'secure'
+                    })
+                }
+            )
+            const data = await response.json();
+            if (data.access_token) {
+                token = data.access_token;
+            }
+        }
+
+        let contentObject;
+        async function content() {
+            if (!token){
+                await signin();
+            }
+            if (token){
+                const response = await fetch(
+                'http://localhost:3333/bookmarks',
+                {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            )
+            const data =await response.json();
+            contentObject=data;
+            }else{
+                console.log('unable to fetch content');
+            }
+           return contentObject 
+        }
+
+        async function run() {
+            const contentObject = await content();
+            create(contentObject);
+        }
+        run();
+        function create(contentObject) {
+             if(contentObject){
+                const container = document.getElementById('bookmark_container');
+                contentObject.forEach(data => {
+                const card =document.createElement('div');
+                card.className= 'col-5 pad card card-block shadow-lg ms-2 me-4 mt-4 px-0';
+                const form = document.createElement('form');
+                form.className = 'position-absolute top-0 end-0 opacity-75';
+                const button = document.createElement('button');
+                button.className = 'border border-0 pb-2';
+                button.title = 'delete bookmark';
+                button.type = 'button';
+                button.onclick='delete()';
+                button.addEventListener('click', async () =>{card.remove(); await deleteBookmark(data.id);} );
+                const image = document.createElement('img');
+                image.src = 'src_pictures/minus.svg';
+                image.alt = 'minus icon';
+                image.width = 20;
+                image.height = 20;
+                button.appendChild(image);
+                form.appendChild(button);
+                card.appendChild(form);
+                const img = document.createElement('img');
+                img.className = 'card-img-top';
+                img.alt = data.title;
+                img.height = 200;
+                img.src = data.imageURL;
+                card.appendChild(img);
+                const title = document.createElement('h3');
+                title.className = 'title';
+                title.textContent = data.title;
+                card.appendChild(title);
+                const body = document.createElement('div');
+                body.className = 'card-body';
+                const desc = document.createElement('p');
+                desc.className = 'card-text';
+                desc.textContent = data.description;
+                body.appendChild(desc);
+                const link = document.createElement('a');
+                link.href = data.link;
+                link.className = 'btn btn-success';
+                link.textContent = 'See more';
+                body.appendChild(link);
+                card.appendChild(body);
+                container.appendChild(card);
+            })
+            }else{
+                console.log('not iterable');
+            }
+        }
+
+        async function deleteBookmark(id){
+            const response= await fetch(
+                `http://localhost:3333/bookmarks/${id}`,
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            )
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -159,171 +274,8 @@
     <div class="antique-white py-5">
         <h1 class="h2 pb-4 px-4">Saved Lists</h1>
         <div class="container-fluid px-4">
-            <div class="row">
-                <div class=" col-5 pad card card-block shadow-lg ms-2 me-4 mt-4 px-0">
-                    <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2" title="Save for later" type="submit"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/rome.jpg" class="card-img-top" alt="Polenzquelle in Rome" height="200px" >
-                    <div class="card-body">
-                    <span class="card-title">
-                        <img class="pads__package__img" src="src_pictures/calendar-days.svg" height="15px" width="15px" alt="calander"> 8 Days 
-                        <img class="pads__package__img" src="src_pictures/paper-plane.svg" height="15px" width="15px" alt="paper-plane"> 2 cities
-                        <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
-                    </span>
-                    <p class="card-text">Come and visit the Nile the beautiful city of Rome.</p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
-                    </div>
-                </div>
-                <div class="col-4 pad card card-block shadow-lg ms-2 me-4 mt-4 px-0" >
-                    <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2" title="Save for later" type="submit"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/singapore.jpg" class="card-img-top" alt="singapore" height="200px" >
-                    <div class="card-body">
-                    <span class="card-title">
-                        <img class="pads__package__img" src="src_pictures/calendar-days.svg" height="15px" width="15px" alt="calander"> 3 Days 
-                        <img class="pads__package__img" src="src_pictures/paper-plane.svg" height="15px" width="15px" alt="paper-plane"> 1 cities
-                        <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
-                    </span>
-                    <p class="card-text">Visit the fast growing city os singapore.</p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
-                    </div>
-                </div>
-                <div class="col-4 pad card card-block shadow-lg ms-2 me-4 mt-4 px-0">
-                    <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2" title="Save for later" type="submit"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/egypt.jpg" class="card-img-top" alt="Egyptian palace" height="200px" >
-                    <div class="card-body">
-                    <span class="card-title">
-                        <img class="pads__package__img" src="src_pictures/calendar-days.svg" height="15px" width="15px" alt="calander"> 3 Days 
-                        <img class="pads__package__img" src="src_pictures/paper-plane.svg" height="15px" width="15px" alt="paper-plane"> 2 cities
-                        <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
-                    </span>
-                    <p class="card-text">Come and visit the Nile the beautiful city of Egypt.</p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
-                    </div>
-                </div>
-                <div class="col-4 pad card card-block shadow-lg ms-2 me-4 mt-4 px-0">
-                    <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2" title="Save for later" type="submit"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/dubai.jpg" class="card-img-top" alt="dubai city" height="200px" >
-                    <div class="card-body">
-                    <span class="card-title">
-                        <img class="pads__package__img" src="src_pictures/calendar-days.svg" height="15px" width="15px" alt="calander"> 5 Days 
-                        <img class="pads__package__img" src="src_pictures/paper-plane.svg" height="15px" width="15px" alt="paper-plane"> 2 cities
-                        <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
-                    </span>
-                    <p class="card-text">Come and visit the futuristic city of Dubi.</p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
-                    </div>
-                </div>
-                <div class="col-3 pad card card-block shadow-lg ms-2 me-4 mt-4 px-0">
-                    <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2" title="Save for later" type="submit"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/ertale.jpg" class="card-img-top" alt="Ertale" height="200px" >
-                    <div class="card-body">
-                    <span class="card-title">
-                        <img class="pads__package__img" src="src_pictures/calendar-days.svg" height="15px" width="15px" alt="calander"> 5 Days 
-                        <img class="pads__package__img" src="src_pictures/paper-plane.svg" height="15px" width="15px" alt="paper-plane"> 2 cities
-                        <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
-                    </span>
-                    <p class="card-text">Visit the mesmerizing force of the nature in Ertale,Afar.</p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
-                    </div>
-                </div>
-                <div class="col-3 pad card card-block shadow-lg ms-2 me-4 mt-4 px-0">
-                    <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2" title="Save for later" type="submit"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/greek.jpg" class="card-img-top" alt="dubai city" height="200px" >
-                    <div class="card-body">
-                    <span class="card-title">
-                        <img class="pads__package__img" src="src_pictures/calendar-days.svg" height="15px" width="15px" alt="calander"> 5 Days 
-                        <img class="pads__package__img" src="src_pictures/paper-plane.svg" height="15px" width="15px" alt="paper-plane"> 2 cities
-                        <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
-                    </span>
-                    <p class="card-text">Come and visit the astaunding art of classical architecture in Athens,Greek. </p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
-                    </div>
-                </div>
-                <div class="col-3 pad card card-block shadow-lg ms-2 me-4 mt-4 px-0">
-                    <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2" title="Save for later" type="submit"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/mecca.jpg" class="card-img-top" alt="dubai city" height="200px" >
-                    <div class="card-body">
-                    <span class="card-title">
-                        <img class="pads__package__img" src="src_pictures/calendar-days.svg" height="15px" width="15px" alt="calander"> 5 Days 
-                        <img class="pads__package__img" src="src_pictures/paper-plane.svg" height="15px" width="15px" alt="paper-plane"> 2 cities
-                        <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
-                    </span>
-                    <p class="card-text">Come and visit the holy city of Mecca.</p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
-                    </div>
-                </div>
-                <div class="col-3 pad card card-block shadow-lg ms-2 me-4 mt-4 px-0">
-                    <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2" title="Save for later" type="submit"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/singapore.jpg" class="card-img-top" alt="dubai city" height="200px" >
-                    <div class="card-body">
-                    <span class="card-title">
-                        <img class="pads__package__img" src="src_pictures/calendar-days.svg" height="15px" width="15px" alt="calander"> 5 Days 
-                        <img class="pads__package__img" src="src_pictures/paper-plane.svg" height="15px" width="15px" alt="paper-plane"> 2 cities
-                        <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
-                    </span>
-                    <p class="card-text">Visit the fast growing city os singapore.</p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
-                    </div>
-                </div>
-                <div class="col-3 pad card card-block shadow-lg ms-2 me-4 mt-4 px-0">
-                    <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2" title="Save for later" type="submit"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/egypt.jpg" class="card-img-top" alt="dubai city" height="200px" >
-                    <div class="card-body">
-                    <span class="card-title">
-                        <img class="pads__package__img" src="src_pictures/calendar-days.svg" height="15px" width="15px" alt="calander"> 5 Days 
-                        <img class="pads__package__img" src="src_pictures/paper-plane.svg" height="15px" width="15px" alt="paper-plane"> 2 cities
-                        <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
-                    </span>
-                    <p class="card-text">Come and visit the Nile the beautiful city of Egypt.</p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
-                    </div>
-                </div>
-                <div class="col-3 pad card card-block shadow-lg ms-2 me-4 mt-4 px-0">
-                    <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2" title="Save for later" type="submit"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/dubai.jpg" class="card-img-top" alt="dubai city" height="200px" >
-                    <div class="card-body">
-                    <span class="card-title">
-                        <img class="pads__package__img" src="src_pictures/calendar-days.svg" height="15px" width="15px" alt="calander"> 5 Days 
-                        <img class="pads__package__img" src="src_pictures/paper-plane.svg" height="15px" width="15px" alt="paper-plane"> 2 cities
-                        <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
-                    </span>
-                    <p class="card-text">Come and visit the futuristic city of Dubi.</p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
-                    </div>
-                </div>
-                <div class="col-4 pad card card-block shadow-lg ms-2 me-4 mt-4 px-0">
-                    <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2" title="Save for later" type="submit"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/dubai.jpg" class="card-img-top" alt="dubai city" height="200px" >
-                    <div class="card-body">
-                    <span class="card-title">
-                        <img class="pads__package__img" src="src_pictures/calendar-days.svg" height="15px" width="15px" alt="calander"> 5 Days 
-                        <img class="pads__package__img" src="src_pictures/paper-plane.svg" height="15px" width="15px" alt="paper-plane"> 2 cities
-                        <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
-                    </span>
-                    <p class="card-text">Come and visit the futuristic city of Dubi.</p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
-                    </div>
-                </div>
-                <div class="col-3 pad card card-block shadow-lg ms-2 me-4 mt-4 px-0">
-                    <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2" title="Save for later" type="submit"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/ertale.jpg" class="card-img-top" alt="Ertale" height="200px" >
-                    <div class="card-body">
-                    <span class="card-title">
-                        <img class="pads__package__img" src="src_pictures/calendar-days.svg" height="15px" width="15px" alt="calander"> 5 Days 
-                        <img class="pads__package__img" src="src_pictures/paper-plane.svg" height="15px" width="15px" alt="paper-plane"> 2 cities
-                        <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
-                    </span>
-                    <p class="card-text">Visit the mesmerizing force of the nature in Ertale,Afar.</p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
-                    </div>
-                </div>
-                <div class="chevron-down justify-content-center py-3" id="chevron-down" onclick="revel()">
-                    <img src="src_pictures/chevron-down.svg" alt="chevrion down icon" height="40px" width="40px">
-                </div>
-                <div class="chevron-up justify-content-center py-3" id="chevron-up" onclick="hide()">
-                    <img src="src_pictures/chevron-up.svg" alt="chevrion up icon" height="40px" width="40px">
-                </div>
+            <div class="row" id="bookmark_container">
             </div>
-        </div>
     </div>
     <footer class="text-center text-lg-start text-white header-footer-color">
         <div class="container p-4 pb-0">
@@ -351,29 +303,5 @@
            <em><small>© 2020 All rights are reserved 2022</small></em>
         </div>
     </footer>
-
-
-<!--Bottom extender and contractor-->
-    <script>
-        let card= document.querySelectorAll('.pad');
-        let down= document.getElementById('chevron-down');
-        let up= document.getElementById('chevron-up');
-        up.style.display="none";
-        function hide(){
-            down.style.display="flex";
-            up.style.display="none";
-            for(i=8;i<card.length;i++){
-                card[i].style.display="none";
-            }    
-        }
-        hide();
-        function revel(){
-            down.style.display="none";
-            up.style.display="flex";
-            for(i=8;i<card.length;i++){
-                card[i].style.display="grid";
-            }
-        }
-    </script>
 </body>
 </html>

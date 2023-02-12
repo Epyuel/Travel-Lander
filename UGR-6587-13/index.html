@@ -8,7 +8,6 @@
         <link href="index.css" rel="stylesheet">
         <script src="js/bootstrap.min.js"></script> 
         <title>Travel Lander|Home</title>
-        <script src="fetch.js"></script>
     </head>
     <body>
         <header>
@@ -61,10 +60,10 @@
             <form class="container-md p-3 border border-1 border-dark rounded" style="background-color:#0b6395; position:relative; top:-30px">
                 <div class="row">
                     <label class="col-md-2 mt-1 input__lable1 text-white" for="input__destination">Destination:</label>
-                    <input name="title" class="col-md-3" id="input__destination" type="text" placeholder="Destination(As in the cards)" >
+                    <input class="col-md-3" id="input__destination" type="text" placeholder="Destination.." name="Search">
                     <label class="col-md-2 mt-1 text-white input__lable2" for="input__departure">Departure Date:</label>
-                    <input class="col-md-3" id="input__departure" type="text" placeholder="dd/mm/yy(Optional)" name="Search">
-                    <div class="col-md-2 mt-1 d-flex justify-content-center"><button onclick="get()" class="py-1 border border-1 text-white rounded button" id="input__button" type="submit" style="width:100px;">Search</button></div>
+                    <input class="col-md-3" id="input__departure" type="text" placeholder="Departure date.." name="Search">
+                    <div class="col-md-2 mt-1 d-flex justify-content-center"><button class="py-1 border border-1 text-white rounded button" id="input__button" type="submit" style="width:100px;">Search</button></div>
                 </div>
             </form>
         </div>
@@ -72,9 +71,9 @@
         <div class="antique-white">
             <h2 class="p-3">Trending Tours</h1>
             <div class="mb-5 row gx-0 conatiner-fluid d-flex flex-row flex-nowrap overflow-auto pads-container">
-                <div class=" col-2 card card-block shadow-lg ms-2 me-4 px-0">     
+                <div class="col-2 card card-block shadow-lg mb-2 ms-2 me-4 px-0">     
                     <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2 saveButton" type="button" onclick="out(this)" id="addEgypt" title="Save for later"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/egypt.jpg" class="card-img-top" alt="Egyptian palace" height="200px" >
+                    <img src="https://i.pinimg.com/originals/80/24/a4/8024a4bedbf4b7b2dec2e300d7a978ec.jpg" class="card-img-top" alt="Egyptian palace" height="200px" >
                     <h3 class="title">Egypt</h3>
                     <div class="card-body">
                     <span class="card-title">
@@ -83,12 +82,12 @@
                         <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
                     </span>
                     <p class="card-text">Come and visit the Nile the beautiful city of Egypt.</p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
+                    <a href="5package_egypt.html?title=egypt" class="btn btn-success">See more</a>
                     </div>
                 </div>
-                <div class="col-2 card card-block shadow-lg me-4 px-0" >      
+                <div class="col-2 card card-block shadow-lg mb-2 me-4 px-0" >      
                     <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2 saveButton" type="button" onclick="out(this)" id="addJerusalem" title="Save for later"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/Jerusalem.jpg" class="card-img-top" alt="Temple of Jerusalem" height="200px" >
+                    <img src="https://modlangs.gatech.edu/sites/default/files/inline-images/josh-appel-QsU8GRwyS3k-unsplash.jpeg" class="card-img-top" alt="Temple of Jerusalem" height="200px" >
                     <h3 class="title">Jerusalem</h3>
                     <div class="card-body">
                     <span class="card-title">
@@ -97,12 +96,12 @@
                         <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
                     </span>
                     <p class="card-text">Come and visit the historic city of Jerusalem.</p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
+                    <a href="5package_egypt.html?title=jerusalem" class="btn btn-success">See more</a>
                     </div>
                 </div>
-                <div class="col-2 card card-block shadow-lg me-4 px-0" >
+                <div class="col-2 card card-block shadow-lg mb-2 me-4 px-0" >
                     <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2 saveButton" type="button" onclick="out(this)" id="addDubai" title="Save for later"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/dubai.jpg" class="card-img-top" alt="dubai city" height="200px" >
+                    <img src="https://www.tmb.ie/wp/wp-content/uploads/2017/02/wael-hneini-QJKEa9n3yN8-unsplash.jpg" class="card-img-top" alt="dubai city" height="200px" >
                     <h3 class="title">Dubai</h3> 
                     <div class="card-body">
                     <span class="card-title">
@@ -110,14 +109,14 @@
                         <img class="pads__package__img" src="src_pictures/paper-plane.svg" height="15px" width="15px" alt="paper-plane"> 2 cities
                         <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
                     </span>
-                    <p class="card-text">Come and visit the futuristic city of Dubi.</p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
+                    <p class="card-text">Come and visit the futuristic city of Dubai.</p>
+                    <a href="5package_egypt.html?title=dubai" class="btn btn-success">See more</a>
                     </div>
                 </div>
-                <div class="col-2 card card-block shadow-lg me-4 px-0" >
+                <div class="col-2 card card-block shadow-lg mb-2 me-4 px-0" >
                     
                     <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2 saveButton" type="button" onclick="out(this)" id="addGondar" title="Save for later"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/gondar.png" class="card-img-top" alt="gondar castle" height="200px" >
+                    <img src="https://as2.ftcdn.net/v2/jpg/01/67/92/23/1000_F_167922388_XvqcKFONxnlX6MEUl9Z15Rs8B0y9fj83.jpg" class="card-img-top" alt="gondar castle" height="200px" >
                     <h3 class="title">Gondar</h3>
                     <div class="card-body">
                     <span class="card-title">
@@ -126,13 +125,13 @@
                         <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
                     </span>
                     <p class="card-text">Come and visit the legendary and religious city of Gondar.</p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
+                    <a href="5package_egypt.html?title=gondar" class="btn btn-success">See more</a>
                     </div>
                 </div>
-                <div class="col-2 card card-block shadow-lg me-4 px-0" >
+                <div class="col-2 card card-block shadow-lg mb-2 me-4 px-0" >
                     
                     <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2 saveButton" type="button" onclick="out(this)" id="addMorroco" title="Save for later"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/morroco.jpg" class="card-img-top" alt="morroc city" height="200px" >
+                    <img src="https://as2.ftcdn.net/v2/jpg/03/77/86/17/1000_F_377861788_754RvFIjtE5GRufr9XHJof9u2lqCDvzA.jpg" class="card-img-top" alt="morroc city" height="200px" >
                     <h3 class="title">Morroco</h3>
                     <div class="card-body">
                     <span class="card-title">
@@ -141,13 +140,13 @@
                         <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
                     </span>
                     <p class="card-text">Come and visit the Beautiful terrain of Morroco </p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
+                    <a href="5package_egypt.html?title=morroco" class="btn btn-success">See more</a>
                     </div>
                 </div>
-                <div class="card col-3 card card-block shadow-lg me-4 px-0" >
+                <div class="card col-3 card card-block shadow-lg mb-2 me-4 px-0" >
                     
                     <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2 saveButton" type="button" onclick="out(this)" id="addAthens" title="Save for later"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/greek.jpg" class="card-img-top" alt="dubai city" height="200px" >
+                    <img src="https://i.pinimg.com/originals/30/6d/b7/306db749b8cc9a291630be15faf39ac5.jpg" class="card-img-top" alt="dubai city" height="200px" >
                     <h3 class="title">Athens</h3>
                     <div class="card-body">
                     <span class="card-title">
@@ -156,12 +155,12 @@
                         <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
                     </span>
                     <p class="card-text">Come and visit the astaunding art of classical architecture in Athens,Greek. </p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
+                    <a href="5package_egypt.html?title=athens" class="btn btn-success">See more</a>
                     </div>
                 </div>
-                <div class="card col-3 card card-block shadow-lg me-4 px-0" style="width: 18rem;">
-                    <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2 saveButton" type="button" onclick="out(this)" id="addErtale" title="Save for later"><img src="src_pictures/plus" alt="Plus icon" width="20px" height="20px"></button></form>
-                    <img src="src_pictures/ertale.jpg" class="card-img-top" alt="Ertale" height="200px" >
+                <div class="card col-3 card card-block shadow-lg mb-2 me-4 px-0" style="width: 18rem;">
+                    <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2 saveButton" type="button" onclick="out(this)" id="addErtale" title="Save for later"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
+                    <img src="https://www.etnaexperience.com/wp-content/uploads/2018/11/eruption_1-1024x683.jpg" class="card-img-top" alt="Ertale" height="200px" >
                     <h3 class="title">Ertale</h3>
                     <div class="card-body">
                     <span class="card-title">
@@ -170,8 +169,38 @@
                         <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
                     </span>
                     <p class="card-text">Visit the mesmerizing force of the nature in Ertale,Afar.</p>
-                    <a href="5package_egypt.html" class="btn btn-success">See more</a>
+                    <a href="5package_egypt.html?title=ertale" class="btn btn-success">See more</a>
                     </div>
+                </div>
+                <div class="col-3 card card-block shadow-lg mb-2 me-4 px-0">
+                    <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2" title="Save for later" type="button" onclick="out(this)"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
+                    <img src="https://international.calpoly.edu/wp-content/uploads/2022/03/rome.jpg" class="card-img-top" alt="Polenzquelle in Rome" height="200px" >
+                    <h3 class="title">Rome</h3>
+                    <div class="card-body">
+                    <span class="card-title">
+                        <img class="pads__package__img" src="src_pictures/calendar-days.svg" height="15px" width="15px" alt="calander"> 8 Days 
+                        <img class="pads__package__img" src="src_pictures/paper-plane.svg" height="15px" width="15px" alt="paper-plane"> 2 cities
+                        <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
+                    </span>
+                    <p class="card-text">Come and visit the Nile the beautiful city of Rome.</p>
+                    <a href="5package_egypt.html?title=rome" class="btn btn-success">See more</a>
+                    </div>
+                </div>
+                <div class="col-3 card card-block shadow-lg mb-2 me-4 px-0">
+                    <form class="position-absolute top-0 end-0 opacity-75"><button class="border border-0 pb-2" title="Save for later" type="button" onclick="out(this)"><img src="src_pictures/plus-solid.svg" alt="Plus icon" width="20px" height="20px"></button></form>
+                    <img src="https://traveltomorrow.com/wp-content/uploads/2021/04/tasnim-umar-blbwkwHPItE-unsplash.jpg" class="card-img-top" alt="Polenzquelle in Rome" height="200px" >
+                    <h3 class="title">Mecca</h3>
+                    <div class="card-body">
+                    <span class="card-title">
+                        <img class="pads__package__img" src="src_pictures/calendar-days.svg" height="15px" width="15px" alt="calander"> 5 Days 
+                        <img class="pads__package__img" src="src_pictures/paper-plane.svg" height="15px" width="15px" alt="paper-plane"> 2 cities
+                        <img class="pads__package__img" src="src_pictures/flag-regular.svg" height="15px" width="15px" alt="flag"> 1 country
+                    </span>
+                    <p class="card-text">Come and visit the holy city of Mecca.</p>
+                    <a href="5package_egypt.html?title=mecca" class="btn btn-success">See more</a>
+                    </div>
+                </div>
+
                 </div>
             </div>
             <div class="container-fluid antique-white py-5"> 
@@ -250,7 +279,10 @@
             });
 
 
-            async function signup() {
+
+
+            try {
+                async function signup() {
                 const response = await fetch(
                     'http://localhost:3333/auth/signup',
                     {
@@ -271,10 +303,19 @@
                                 })
             }
             signup()
+            } catch (error) {
+                console.log(error);
+            }
+
+
+
+
+
+
             
-
-
+            let token;
             async function signin() {
+                
                 const response = await fetch(
                     'http://localhost:3333/auth/signin',
                     {
@@ -288,41 +329,35 @@
                             password:'secure'
                         })
                     }
-                ).then(response => response.json())
-                 .then(data => {
-                                console.log(json)
-                                localStorage.setItem('access_token', data.token);
-                                console.log('all done');
-                                })
+                ).then(res => res.json())
+                 .then(data => token= data.access_token)
+                 .catch(error => console.log('error'))
             }
-            signin();
-            const token = localStorage.getItem('access_token')
-            console.log(token);
-
-            // async function out(button) {
-            //     const image = button.firstElementChild;
-            //     image.src = "src_pictures/check.svg";
-            //     const packageTitle = button.closest('.card-block').querySelector('.title').textContent;
-            //     const desc = button.closest('.card-block').querySelector('.card-text').textContent;
-            //     const redirect = button.closest('.card-block').querySelector('.btn').getAttribute('href');
-
-
-            //     const response = await fetch(
-            //         'http://localhost:3333/bookmarks',
-            //         {
-            //             method: 'POST',
-            //             headers: {
-            //                 'Content-Type': 'application/json',
-            //                 'Authorization': `Bearer ${token}`
-            //             },
-            //             body: JSON.stringify ({
-            //                 title:packageTitle,
-            //                 description:desc,
-            //                 link:redirect
-            //             })
-            //         }
-            //     )
-            // }
+            token = signin();
+            async function out(button) {
+                const image = button.firstElementChild;
+                image.src = "src_pictures/check.svg";
+                const packageTitle = button.closest('.card-block').querySelector('.title').textContent;
+                const desc = button.closest('.card-block').querySelector('.card-text').textContent;
+                const redirect = button.closest('.card-block').querySelector('.btn').getAttribute('href');
+                const img= button.closest('.card-block').querySelector('.card-img-top').getAttribute('src');
+                const response = await fetch(
+                    'http://localhost:3333/bookmarks',
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify ({
+                            title:packageTitle,
+                            description:desc,
+                            link:redirect,
+                            imageURL:img 
+                        })
+                    }
+                )
+            }
 
             
             
@@ -331,4 +366,6 @@
         </script>
     </body>
   </html>            
+
+            
 

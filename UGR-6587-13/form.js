@@ -4,8 +4,6 @@ let email= document.getElementById('email');
 let phoneNumber= document.getElementById('phone-number__number');
 let message= document.getElementById('message');
 
-let departure= document.getElementById('input__departure');
-let destination= document.getElementById('input__destination');
 
 
 
@@ -45,19 +43,6 @@ function validateInput(){
     }
     else{
         onSuccess(message);
-    } 
-
-    if(departure.value.trim()===""){
-        error(departure);
-    }
-    else{
-        success(departure);
-    }
-    if(destination.value.trim()===""){
-        error(destination);
-    }
-    else{
-        success(destination);
     }
 }
 document.getElementById('submit-button')

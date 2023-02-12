@@ -93,7 +93,7 @@
                             <small id="small">*Required</small>
                         </section>
                         <section class="d-flex px-0">
-                            <button id="submit-button" class="button border-0 text-white" type="submit">Submit</button>
+                            <button id="submit-button" class="button border-0 text-white" type="submit" onclick="messaging()">Submit</button>
                         </section>
                     </div>
                 </form>
@@ -158,6 +158,42 @@
             </div>
         </footer>
 <!--form validator-->
+        <script>
+            // const but= document.getElementById('submit-button')
+            // but.addEventListener('click',messaging())
+            async function messaging(){
+                const firstNameInput = document.getElementById('fname');
+                const lastNameInput = document.getElementById('lname');
+                const emailInput = document.getElementById('email');
+                const countryCodeInput = document.getElementById('country-code');
+                const phoneNumberInput = document.getElementById('phone-number__number');
+                const messageInput = document.getElementById('message');
+
+                const firstName = firstNameInput.value;
+                const lastName = lastNameInput.value;
+                const email = emailInput.value;
+                const countryCode = countryCodeInput.value;
+                const phoneNumber = phoneNumberInput.value;
+                const phone= countryCode+phoneNumber
+                const message = messageInput.value;
+                const response = await fetch(
+                    'http://localhost:3333/contact',{
+                        method:'PUT',
+                        headers:{
+                            'Content-Type': 'application/json',
+                        },
+                        body:JSON.stringify({
+                            firstName:firstName,
+                            lastName:lastName,
+                            email:email,
+                            phone:phone,
+                            message:message
+                        })
+                    }
+                )
+                alert('sent')
+            }
+        </script>
         <script src="form.js"></script>
     </body>
 </html>

@@ -8,6 +8,36 @@
     <link href="index.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
     <title>Tour Lander|Pakages</title>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const title = params.get('title');
+        let pkg;
+        async function retrieve() {
+            const response = await fetch(
+                `http://localhost:3333/package/?title=${title}`,{method: 'GET'}
+            ).then(response => response.json())
+             .then(data =>insert(data))
+             .catch(console.log(error))
+        }
+        function insert(pkg) {
+            console.log(pkg);
+            let header=document.getElementById('page-header')
+            let img =document.getElementById('country')
+            let departure=document.getElementById('depart')
+            let desc=document.getElementById('place-description')
+            let map=document.getElementById('map__image')
+            header.innerText=pkg.title
+            header.style.textTransform='capitalize'
+            console.log(header);
+            img.src=pkg.imageURL
+            const departureDate = new Date(pkg.departure);
+            const formattedDate = departureDate.toLocaleDateString('en-US', {year: 'numeric',month: 'long',day: 'numeric'});
+            departure.innerText=`Departure date: ${formattedDate}`
+            desc.innerText=pkg.description
+            map.src=pkg.mapURL
+        }
+        retrieve();
+    </script>
 </head>
 <body>
     <header>
@@ -48,7 +78,7 @@
         </nav>
     </header>
     <div class="p-5">
-        <h1 class="h2">Egypt</h1>
+        <h1 class="h2" id="page-header"></h1>
         <span class="place-name-container__rating">
             <img class="place-name-conatiner__star" src="src_pictures/star-solid.svg" alt="Rating icon" width="20px" height="20px">
             <img class="place-name-conatiner__star" src="src_pictures/star-solid.svg" alt="Rating icon" width="20px" height="20px">
@@ -62,14 +92,11 @@
     </div>
     <div class="row gx-0">
         <section class="dark-antique px-0 image-section col-lg-4">
-        <img class="image-section__image w-100" id="country" src="src_pictures/egypt.jpg" width="200px" height="500px" alt="egyptian-template">
+        <img class="image-section__image w-100" id="country" width="200px" height="500px" alt="picture">
         </section>
         <section class="dark-antique col-lg-8 px-5">
-            <h2 class="discription-container-date pb-4" title="mm/dd/yy">Departure date:01/20/23</h2>
-            <p class="discription-container__date-p pb-4" >
-                5 Day Egypt Tour with Nile Cruise. Awaken your inner explorer on this expedition through the lush river valleys and golden desert landscapes of Egypt. 
-                Cruise the Nile past the pharaonic temples of Luxor to the Nubian treasures of Aswan. 
-                Your voyage will also take you to the mystical Pyramids of Giza, Tomb of the Nobles and the Sphinx.    
+            <h2 class="discription-container-date pb-4" id="depart" title="mm/dd/yy"></h2>
+            <p class="discription-container__date-p pb-4" id="place-description" > 
             </p>
             <div class="row gx-0 py-5">
                 <div class="travel packs col-6">
@@ -104,7 +131,7 @@
             <button class="zoom__zoom border-0 lemon" id="zoom__out" onclick="zoomOut()" title="Zoom Out" type="submit"><img src="src_pictures/minus-solid.svg" alt="Minus icon" width="20px" height="20px"></button>
         </div>
         <div class="map overflow-scroll">
-            <img class="map__image" id="map__image" src="src_pictures/egypt_map.png" alt="map" width="80%" height="450px">
+            <img class="map__image" id="map__image" alt="map" width="80%" height="450px">
         </div>
         <div class="legend ocean position-absolute bottom-0">
             <h3 class="legend__h3">Legend</h3>
